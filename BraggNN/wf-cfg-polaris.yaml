@@ -1,0 +1,38 @@
+# workflow configuration and execution arguments
+
+wf_name: "BraggNN Training using Polaris"
+
+# computing funcX information
+computing_fabric: 
+    EUUID  : "9e79266d-0609-4407-ae1a-ac7d60105487"
+    TrFUUID: "c32c4282-edc2-4336-bef2-34af2bdc6122"
+    HWFUUID: "13ec0ea1-b2f8-494b-aced-03e1cc7fc7ae"
+    WDIR   : "/lus/theta-fs0/projects/smarthpc/zliu/wf-BraggNN/"
+    TrCMD  : "./main.py#-expName=wf#-maxep=20#-psz=11#-gpus=1#-verbose=1"
+
+# location of the training dataset
+src_data_fabric:
+    UUID: "ca3355f4-6e20-4178-981f-ef8875e8bbc2"  # AISDC@eagle
+    PATH: "/zliu/hedm/"
+
+# destination of training dataset
+dst_data_fabric:
+    "UUID": "08925f04-569f-11e7-bef8-22000b9a448b" # DTN@ALCF
+    PATH: "/lus/theta-fs0/projects/smarthpc/zliu/wf-BraggNN/dataset/"
+
+# location of the trained model folder
+src_model_fabric:
+    UUID: "08925f04-569f-11e7-bef8-22000b9a448b"
+    PATH: "/lus/theta-fs0/projects/smarthpc/zliu/wf-BraggNN/wf-itrOut/"
+
+# model destination
+dst_model_fabric:
+    # UUID: "48eb8b64-dd80-11ea-85a3-0e1702b77d41" # GCP@Mona
+    # PATH: "/home/beams/ZHENGCHUN.LIU/wf/model/"
+    UUID: "302abb02-af25-11e9-9393-02ff96a5aa76" # GCP@Mona
+    PATH: "/Users/zliu/Documents/gcp-ep/BraggNN/"
+    
+# general workflow configuration
+workflow:
+    FLOWID: "50d09bc6-f637-4b68-952d-4ed9c71fe843"
+    SCOPE : "https://auth.globus.org/scopes/50d09bc6-f637-4b68-952d-4ed9c71fe843/flow_50d09bc6_f637_4b68_952d_4ed9c71fe843_user"
