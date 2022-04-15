@@ -5,4 +5,4 @@ Two applications are included:
 
 **[BraggNN](https://github.com/lzhengchun/nnTrainFlow/tree/main/BraggNN)** based on experimental data and 
 
-**[CookieNetAE](https://github.com/lzhengchun/nnTrainFlow/tree/main/CookieNetAE)** using based on data generated from simulation. 
+**[CookieNetAE](https://github.com/lzhengchun/nnTrainFlow/tree/main/CookieNetAE)** using data generated from simulation. 
