@@ -10,3 +10,5 @@ Two applications are included:
 **Note that**:
 These two flows run in production across restricted machines.
 As the endpoint, flow and funcX functions used in this repo are private to author's account, one should not expect to run the flows directly from another account. Instead, reader can use these demo flows as template to recreate the flow for other application scenarios.
+
+![The Big Picture](BigPic.png)
