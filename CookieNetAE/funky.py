@@ -78,3 +78,13 @@ def funcX_simu_data_proc_for_CookieNetAE(ddir, tfn, vfn):
 
 # curation_uuid = fxc.register_function(funcX_simu_data_proc_for_CookieNetAE)
 # print(f'funcX ID for simu dataCure: {curation_uuid}')
+
+def funcX_mdl_train(wdir, cmde):
+    cmd_aug = cmde.split('#')
+    import subprocess, os
+    os.chdir(wdir) 
+    result = subprocess.run(cmd_aug, stdout=subprocess.PIPE)
+    return result.stdout.decode('utf-8')
+    
+# train_uuid = fxc.register_function(funcX_mdl_train)
+# print(f'funcX ID for simu dataCure: {train_uuid}')
