@@ -1,0 +1,54 @@
+# workflow configuration and execution arguments
+
+wf_name: "CookieNetAE Training flow using lambda cluster with NVIDIA GPU"
+# computing funcX information
+simulation_func: 
+    EUUID  : "367491b0-41dc-4fa7-9421-414a0b34e2e7"
+    FUUID  : "8b8d0c31-ca5b-4833-99ea-2348c3057c43"
+    HWFUUID: "13ec0ea1-b2f8-494b-aced-03e1cc7fc7ae"
+    args_wdir : "/lambda_stor/data/zliu/flows/CookieNetAE/simulator"
+    args_cmde : "/homes/zhengchun.liu/usr/miniconda3/envs/funcx/bin/python#run_simulation.py#-ofname=out/simu4cnae.h5#-n_images=800#-n_threads=40"
+    
+curation_func: 
+    EUUID  : "367491b0-41dc-4fa7-9421-414a0b34e2e7"
+    FUUID  : "e6ecc122-e679-4f95-a794-fdd78db08f8e"
+    HWFUUID: "13ec0ea1-b2f8-494b-aced-03e1cc7fc7ae"
+    args_ddir : "/lambda_stor/data/zliu/flows/CookieNetAE/simulator/out/"
+    args_tfn  : "/lambda_stor/data/zliu/flows/CookieNetAE/ds-tmp/cb-ds-train.h5"
+    args_vfn  : "/lambda_stor/data/zliu/flows/CookieNetAE/ds-tmp/cb-ds-valid.h5"
+
+# location of the source training/validation datasets
+src_data:
+    UUID: "8715e4f0-1d34-11ea-9705-021304b0cca7"
+    PATH: "/lambda_stor/data/zliu/flows/CookieNetAE/ds-tmp/"
+    
+# location of the destination training/validation datasets
+dst_data:
+    UUID: "8715e4f0-1d34-11ea-9705-021304b0cca7"
+    PATH: "/lambda_stor/data/zliu/flows/CookieNetAE/ds-mdl/"
+
+training_func: 
+    EUUID  : "367491b0-41dc-4fa7-9421-414a0b34e2e7"
+    FUUID  : "c32c4282-edc2-4336-bef2-34af2bdc6122"
+    HWFUUID: "13ec0ea1-b2f8-494b-aced-03e1cc7fc7ae"
+    args_wdir : "/lambda_stor/data/zliu/flows/CookieNetAE/model"
+    args_cmde : "torchrun#--standalone#--nnodes=1#--nproc_per_node=4#./main-ddp.py#-expName=wf#-tfn=../ds-mdl/cb-ds-train.h5#-vfn=../ds-mdl/cb-ds-valid.h5#-maxep=50#-gpus=4,5,6,7"
+    
+# location of the trained model folder
+src_model:
+    UUID: "8715e4f0-1d34-11ea-9705-021304b0cca7"
+    PATH: "/lambda_stor/data/zliu/flows/CookieNetAE/model/wf-itrOut"
+
+# model destination
+dst_model:
+    UUID: "aa4fcdaf-6d04-11e5-ba46-22000b92c6ec" # slac#lcls at SLAC
+    PATH: "/cds/home/z/zcliu/wf/model/"
+    # UUID: "48eb8b64-dd80-11ea-85a3-0e1702b77d41" # GCP@Mona
+    # PATH: "/home/beams/ZHENGCHUN.LIU/wf/model/"
+    # UUID: "302abb02-af25-11e9-9393-02ff96a5aa76" # GCP@Macbook
+    # PATH: "/Users/zliu/Documents/gcp-ep/BraggNN/"
+    
+# general workflow configuration
+workflow:
+    FLOWID: "c973253e-91a9-4e27-84d9-ab9b193a8fbb"
+    SCOPE : "https://auth.globus.org/scopes/c973253e-91a9-4e27-84d9-ab9b193a8fbb/flow_c973253e_91a9_4e27_84d9_ab9b193a8fbb_user"
